@@ -1,41 +1,66 @@
 Academic Copilot
 ---------
 
-## Overview 
+# Overview 
+
+**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
+**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
+**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
+**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
 
 
 
-
-## Installation
-
+# Installation
 
 
-## Tutorial
 
-### 1. Get Paper Information
+# Tutorial
 
-#### 1.1 from the `paper_list.txt`
+## 1. Get Paper Information
+
+### 1.1 from the `paper_list.txt`
+
+논문 리스트가 담긴 텍스트 파일을 이용하여 논문 정보를 가져옴
 
 ```bash
-python3 academic_copilot.py get_paper --from paper_list --path ./paper_list.txt
+python3 academic_copilot.py get_paper --from paper_list --path ./new_paper_list.txt
 ```
 
-#### 1.2 from the biblio information
+
+`--path` 옵션을 사용하지 않으면 기본 경로인 `$NEW_PAPER_LIST` 를 사용함
+
+```bash
+python3 academic_copilot.py get_paper --from paper_list
+```
+
+
+### 1.2 from the biblio information
+
+기존에 가져온 논문들의 인용 정보에서 다음에 가져올 논문 정보를 선택 
 
 ```bash
 python3 academic_copilot.py get_paper --from biblioinfo
 ```
 
-#### 1.3 from the semantic id
+`--id` 옵션을 사용하여 특정 논문의 인용 정보에서 다음에 가져올 논문 정보를 선택
+
+```bash
+python3 academic_copilot.py get_paper --from biblioinfo --id=123456789
+```
+
+#todo: filter 처리에 대한 내용 추가 필요 
+
+
+### 1.3 from the semantic id
 
 ```bash
 python3 academic_copilot.py get_paper --from=semantic_id --id=123456789
 ```
 
 
-### 2. Download paper as markdown format
+## 2. Download paper as markdown format
 
-#### 2.1 From the IEEEXplore
+### 2.1 From the IEEEXplore
 
 ```bash
 python3 academic_copilot.py download_paper ---from=ieeexplore
@@ -45,67 +70,68 @@ python3 academic_copilot.py download_paper ---from=ieeexplore
 python3 academic_copilot.py download_paper ---from=ieeexplore --id=123456789
 ```
 
-#### 2.2 From the ACM Digital Library
+### 2.2 From the ACM Digital Library
 
 ```python
 
 ```
 
-#### 2.3 From the ArXiv
+### 2.3 From the ArXiv
 
 ```python
 
 ```
 
-#### 2.4 From the PDF (AI based OCR)
+### 2.4 From the PDF (AI based OCR)
+
+```python
+# 
+
+```
+
+## 3. Generate Document
+
+### 3.1 Translate Paper Text
 
 ```python
 
 ```
 
-### 3. Generate Document
-
-#### 3.1 Translate Paper Text
+### 3.2 Generate Summary
 
 ```python
 
 ```
 
-#### 3.2 Generate Summary
+### 3.3 Generate Review
 
 ```python
 
 ```
 
-#### 3.3 Generate Review
-
-```python
-
-```
-
-#### 3.4 Generate Slide
+### 3.4 Generate Slide
 
 ```python
 
 ```
 
 
-## Project Structure
+# Project Structure
 
-### academic_crawler
+## academic_crawler
 
 - [x] **ieeexplore.py** : ieeexplore에서 논문 정보를 가져옴
 - [ ] acm.py : <!-- TODO -->
 - [ ] arxiv.py : <!-- TODO -->
 
-### document_generator : `import academic_copilot.document_generator`
+## document_generator : `import academic_copilot.document_generator`
 
 - [ ] pdf_to_text.py : <!-- TODO --> 
 - [ ] text_to_pdf.py : <!-- TODO --> 
 - [ ] text_to_ppt.py : <!-- TODO --> 
 - [ ] text_to_slide.py : <!-- TODO --> 
   
-### gpt_integration : `import academic_copilot.gpt_integration`
+## gpt_integration : `import academic_copilot.gpt_integration`
 
 - [ ] **ocr.py** : <!-- TODO -->  
 - [ ] **text_gen.py** : <!-- TODO -->  
@@ -113,7 +139,7 @@ python3 academic_copilot.py download_paper ---from=ieeexplore --id=123456789
 - [ ] **summarize.py** : <!-- TODO -->  
 - [x] **translate.py** : <!-- TODO -->  
    
-### semantic_scholar : `import academic_copilot.semantic_scholar` 
+## semantic_scholar : `import academic_copilot.semantic_scholar` 
 
 **get_paper_info.py** semantic scholar api를 이용하여 논문 정보를 가져옴 
 - [x] `save_paper_info_from_semantic_id(semantic_id)` :  
@@ -131,12 +157,12 @@ python3 academic_copilot.py download_paper ---from=ieeexplore --id=123456789
 **academic_database.py**
 - [x] `search_from_database(key, value, result_key) -> result_value` :  
 
-### rag_integration : `import academic_copilot.rag_integration`
+## rag_integration : `import academic_copilot.rag_integration`
 - #TODO
 
 
 
-## Environment Variables
+# Environment Variables
 
 - `SEMMANTIC_SCHOLAR_API_KEY` : Semantic Scholar API Key
 - `PAPER_INFO_PATH` : 논문 정보를 저장할 경로
