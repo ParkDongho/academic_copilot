@@ -1,4 +1,3 @@
-import os
 import requests
 from requests import Session
 import time
@@ -13,7 +12,6 @@ from academic_copilot.semantic_scholar.academic_database import search_from_data
 from academic_copilot.util.env import *
 
 dotenv.load_dotenv()
-
 
 def create_yaml(metadata, paper_id):
     """
@@ -117,7 +115,6 @@ def get_paper_info(s2id_file):
     :return:
     """
     # Change working directory to output directory
-    PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
     os.chdir(PAPER_INFO_PATH)
 
     with open(s2id_file, 'r') as s2id_file:
@@ -149,7 +146,6 @@ def save_paper_info(s2id_file):
     :return:
     """
 
-    PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
     # Create output directory if it doesn't exist
     os.makedirs(PAPER_INFO_PATH, exist_ok=True)
     get_paper_info(s2id_file)
@@ -164,8 +160,6 @@ def save_paper_info_from_paper_list(new_paper_list):
     """
 
     # Change working directory to output directory
-    PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
-    # NEW_PAPER_LIST = os.environ.get('NEW_PAPER_LIST', '')
 
     os.makedirs(PAPER_INFO_PATH, exist_ok=True)
     os.chdir(PAPER_INFO_PATH)
@@ -177,7 +171,6 @@ def save_paper_info_from_paper_list(new_paper_list):
 
 
 def save_paper_info_from_semantic_id(semantic_id, ieee_paper_id=None, acm_paper_id=None, doi_id=None):
-    PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
     os.makedirs(PAPER_INFO_PATH, exist_ok=True)
     download_paper_info(semantic_id,
                         ieee_paper_id=ieee_paper_id,
@@ -187,7 +180,6 @@ def save_paper_info_from_semantic_id(semantic_id, ieee_paper_id=None, acm_paper_
 
 def download_paper_info(semantic_id, ieee_paper_id=None, acm_paper_id=None, doi_id=None):
     # Change working directory to output directory
-    PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
     os.chdir(PAPER_INFO_PATH)
 
     fields = 'title,authors,year,venue,abstract,citationCount,externalIds,publicationDate'
