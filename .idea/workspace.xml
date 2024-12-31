@@ -6,10 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b092b3da-0b63-4278-bd7c-fd0422e39846" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/academic_copilot.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/semantic_scholar/academic_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/semantic_scholar/academic_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_citation_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_citation_info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_reference_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_reference_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/util/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/util/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735626201688</updated>
       <workItem from="1735626204028" duration="8773000" />
-      <workItem from="1735636970938" duration="1000000" />
+      <workItem from="1735636970938" duration="1857000" />
     </task>
     <servers />
   </component>
@@ -131,92 +135,92 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>198</line>
+          <line>193</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>199</line>
+          <line>194</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>201</line>
+          <line>196</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>203</line>
+          <line>198</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>202</line>
+          <line>197</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>197</line>
+          <line>192</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>91</line>
+          <line>86</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>92</line>
+          <line>87</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>93</line>
+          <line>88</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>94</line>
+          <line>89</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>95</line>
+          <line>90</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>96</line>
+          <line>91</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>98</line>
+          <line>93</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>100</line>
+          <line>95</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>99</line>
+          <line>94</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>101</line>
+          <line>96</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>80</line>
+          <line>75</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>81</line>
+          <line>76</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>

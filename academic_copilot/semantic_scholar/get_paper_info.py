@@ -10,14 +10,9 @@ import dotenv
 
 from selenium.webdriver.common.by import By
 from academic_copilot.semantic_scholar.academic_database import search_from_database
-
+from academic_copilot.util.env import *
 
 dotenv.load_dotenv()
-PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
-JOURNAL_LIST_PATH = os.environ.get('JOURNAL_LIST_PATH', '')
-S2_API_KEY = os.environ.get('S2_API_KEY', '')
-NEW_PAPER_LIST = os.environ.get('NEW_PAPER_LIST', '')
-CITATION_INFO_PATH = os.environ.get('CITATION_INFO_PATH', '')
 
 
 def create_yaml(metadata, paper_id):

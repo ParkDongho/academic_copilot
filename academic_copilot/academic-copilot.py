@@ -2,9 +2,7 @@ import argparse
 import os
 
 from academic_copilot.semantic_scholar.get_paper_info import save_paper_info_from_paper_list
-
-NEW_PAPER_LIST = os.environ.get('NEW_PAPER_LIST', '')
-
+from academic_copilot.util.env import *
 
 def get_paper_from_list(file_path):
     print(f"Getting paper information from: {file_path}")

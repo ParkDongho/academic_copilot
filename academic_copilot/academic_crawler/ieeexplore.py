@@ -7,15 +7,11 @@ from requests import Session
 import argparse
 import re
 
-# from docutils.nodes import caption
-# from mistune import markdown
-# from orca.punctuation_settings import section
-
-
 from selenium import webdriver
 import time
 
 from bs4 import Tag, NavigableString
+from academic_copilot.util.env import *
 from academic_copilot.semantic_scholar.get_paper_info import get_semantic_id_from_ieee_id
 from academic_copilot.semantic_scholar.get_paper_info import get_semantic_id_from_doi
 

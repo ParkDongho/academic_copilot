@@ -1,8 +1,7 @@
 import os
 import yaml
+from academic_copilot.util.env import *
 
-
-PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
 
 
 def search_from_database(key, value, result_key):

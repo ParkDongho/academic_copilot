@@ -6,11 +6,10 @@ import requests
 from requests import Session
 from typing import Generator, TypeVar
 import dotenv
+from academic_copilot.util.env import *
+
 dotenv.load_dotenv()
 
-S2_API_KEY = os.environ.get('S2_API_KEY', '')
-PAPER_INFO_PATH = os.environ.get('PAPER_INFO_PATH', '')
-CITATION_INFO_PATH = os.environ.get('CITATION_INFO_PATH', '')
 
 T = TypeVar('T')
 
