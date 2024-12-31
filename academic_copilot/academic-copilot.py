@@ -1,10 +1,14 @@
 import argparse
+import os
 
-from build.lib.academic_copilot.semantic_scholar.get_paper_info import NEW_PAPER_LIST
+from academic_copilot.semantic_scholar.get_paper_info import save_paper_info_from_paper_list
+
+NEW_PAPER_LIST = os.environ.get('NEW_PAPER_LIST', '')
 
 
 def get_paper_from_list(file_path):
     print(f"Getting paper information from: {file_path}")
+    save_paper_info_from_paper_list(file_path)
     # Logic for processing the paper list
 
 
@@ -52,6 +56,7 @@ def main():
                 get_paper_from_list(args.path)
             else:
                 get_paper_from_list(NEW_PAPER_LIST)
+
 
         elif args.source == "biblioinfo":
             get_paper_from_biblioinfo()

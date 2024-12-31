@@ -3,11 +3,6 @@ Academic Copilot
 
 # Overview 
 
-**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
-**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
-**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
-**[ISCA'16]** Eyeriss [\[translated\]](), [\[original\]](), [\[slide\]]()  
-
 
 
 # Installation
@@ -23,14 +18,13 @@ Academic Copilot
 논문 리스트가 담긴 텍스트 파일을 이용하여 논문 정보를 가져옴
 
 ```bash
-python3 academic_copilot.py get_paper --from paper_list --path ./new_paper_list.txt
+python3 academic-copilot.py get_paper --from paper_list --path ./new_paper_list.txt
 ```
-
 
 `--path` 옵션을 사용하지 않으면 기본 경로인 `$NEW_PAPER_LIST` 를 사용함
 
 ```bash
-python3 academic_copilot.py get_paper --from paper_list
+python3 academic-copilot.py get_paper --from paper_list
 ```
 
 
@@ -39,13 +33,13 @@ python3 academic_copilot.py get_paper --from paper_list
 기존에 가져온 논문들의 인용 정보에서 다음에 가져올 논문 정보를 선택 
 
 ```bash
-python3 academic_copilot.py get_paper --from biblioinfo
+python3 academic-copilot.py get_paper --from biblioinfo
 ```
 
 `--id` 옵션을 사용하여 특정 논문의 인용 정보에서 다음에 가져올 논문 정보를 선택
 
 ```bash
-python3 academic_copilot.py get_paper --from biblioinfo --id=123456789
+python3 academic-copilot.py get_paper --from biblioinfo --id=123456789
 ```
 
 #todo: filter 처리에 대한 내용 추가 필요 
@@ -54,7 +48,7 @@ python3 academic_copilot.py get_paper --from biblioinfo --id=123456789
 ### 1.3 from the semantic id
 
 ```bash
-python3 academic_copilot.py get_paper --from=semantic_id --id=123456789
+python3 academic-copilot.py get_paper --from=semantic_id --id=123456789
 ```
 
 
@@ -63,11 +57,11 @@ python3 academic_copilot.py get_paper --from=semantic_id --id=123456789
 ### 2.1 From the IEEEXplore
 
 ```bash
-python3 academic_copilot.py download_paper ---from=ieeexplore
+python3 academic-copilot.py download_paper ---from=ieeexplore
 ```
 
 ```bash
-python3 academic_copilot.py download_paper ---from=ieeexplore --id=123456789
+python3 academic-copilot.py download_paper ---from=ieeexplore --id=123456789
 ```
 
 ### 2.2 From the ACM Digital Library

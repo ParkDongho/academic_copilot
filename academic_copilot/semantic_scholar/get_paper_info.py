@@ -1,5 +1,6 @@
 import os
 import requests
+from requests import Session
 import time
 import yaml
 import pandas as pd
@@ -77,7 +78,7 @@ def clean_abstract(abstract: str) -> str:
 
 
 
-def get_paper_metadata(session: requests.Session, paper_id: str,
+def get_paper_metadata(session: Session, paper_id: str,
                        fields: str = 'title,authors,year,venue,abstract,citationCount') -> Dict[str, Any]:
     """
     Get paper metadata from Semantic Scholar API.
@@ -128,7 +129,7 @@ def get_paper_info(s2id_file):
         s2ids = [line.strip() for line in s2id_file.readlines()]
     fields = 'title,authors,year,venue,abstract,citationCount,externalIds,publicationDate'
     for paper_id in s2ids:
-        with requests.Session() as session:
+        with Session() as session:
             paper_metadata = get_paper_metadata(session, paper_id, fields=fields)
 
         if not paper_metadata:
@@ -195,7 +196,7 @@ def download_paper_info(semantic_id, ieee_paper_id=None, acm_paper_id=None, doi_
     os.chdir(PAPER_INFO_PATH)
 
     fields = 'title,authors,year,venue,abstract,citationCount,externalIds,publicationDate'
-    with requests.Session() as session:
+    with Session() as session:
         paper_metadata = get_paper_metadata(session, semantic_id, fields=fields)
 
     if not paper_metadata:
