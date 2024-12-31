@@ -1,3 +1,5 @@
 build/
 academic_copilot.egg-info/
 __pycache__/
+.idea/
+venv/
