@@ -166,6 +166,9 @@ def save_paper_info_from_paper_list(new_paper_list):
 
     with open(new_paper_list, 'r') as s2id_file:
         s2ids = [line.strip() for line in s2id_file.readlines()]
+
+    print(f"Fetching paper info for {len(s2ids)} papers.")
+
     for paper_id in s2ids:
         save_paper_info_from_semantic_id(paper_id)
 

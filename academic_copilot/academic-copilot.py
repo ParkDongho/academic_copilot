@@ -1,6 +1,7 @@
 import argparse
 import os
 
+from academic_copilot.academic_crawler import get_ieee_paper
 from academic_copilot.semantic_scholar.get_paper_info import save_paper_info_from_paper_list
 from academic_copilot.util.env import *
 
@@ -19,8 +20,10 @@ def get_paper_from_semantic_id(semantic_id):
     print(f"Getting paper information from semantic ID: {semantic_id}")
     # Logic for processing semantic ID
 
+# academic_crawler
 
 def download_paper_from_ieeexplore(ieee_id):
+    get_ieee_paper(ieee_id)
     print(f"Downloading paper from IEEE Xplore: {ieee_id}")
     # Logic for downloading paper from IEEE Xplore
 

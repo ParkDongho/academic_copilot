@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b092b3da-0b63-4278-bd7c-fd0422e39846" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/gpt_integration/translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/gpt_integration/translate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/academic_copilot/util/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/util/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/env.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,20 +47,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.copilot.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.copilot.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -114,7 +114,9 @@
       <option name="presentableId" value="Default" />
       <updated>1735626201688</updated>
       <workItem from="1735626204028" duration="8773000" />
-      <workItem from="1735636970938" duration="2510000" />
+      <workItem from="1735636970938" duration="2688000" />
+      <workItem from="1735790411181" duration="4082000" />
+      <workItem from="1735800167716" duration="3490000" />
     </task>
     <servers />
   </component>
@@ -125,38 +127,33 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/academic_copilot/academic-copilot.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>185</line>
+          <line>188</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>186</line>
+          <line>189</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>188</line>
+          <line>191</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>190</line>
+          <line>193</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>189</line>
+          <line>192</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>184</line>
+          <line>187</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
