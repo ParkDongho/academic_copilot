@@ -63,17 +63,12 @@ def split_text_by_length_into_n_parts(text, n):
     return parts
 
 
-def main():
+def translate_markdown(read_file_path, write_file_path, re_translate_threshold=100):
     client = openai.OpenAI()
-    parser = argparse.ArgumentParser(description="Translate and process text files.")
-    parser.add_argument("--read_file_path", required=True, help="Path to the input file")
-    parser.add_argument("--write_file_path", required=True, help="Path to the output file")
-    parser.add_argument("--re_translate_threshold", type=int, default=100, help="Minimum length of translated text to trigger re-translation")
-
-    args = parser.parse_args()
 
 
-    chapter_texts = read_and_split_texts(args.read_file_path)
+
+    chapter_texts = read_and_split_texts(read_file_path)
     result = ""
     chapter_num = 1
     chapter_len = len(chapter_texts)
@@ -99,7 +94,7 @@ def main():
         else:
             translated_text = translate(chapter, client)
             print(f"Translated text length: {len(translated_text)}")
-            while len(translated_text) < args.re_translate_threshold:
+            while len(translated_text) < re_translate_threshold:
                 print("ERROR! Re-translating...")
                 time.sleep(5)
                 translated_text = translate(chapter, client)
@@ -107,11 +102,20 @@ def main():
         result = result + "\n\n" + translated_text
         chapter_num += 1
 
-    output_path = f"{args.write_file_path}"
+    output_path = f"{write_file_path}"
     save_text(output_path, result)
     print("----------------------\n")
 
 if __name__ == "__main__":
-    main()
+
+    parser = argparse.ArgumentParser(description="Translate and process text files.")
+    parser.add_argument("--read_file_path", required=True, help="Path to the input file")
+    parser.add_argument("--write_file_path", required=True, help="Path to the output file")
+    parser.add_argument("--re_translate_threshold", type=int, default=100, help="Minimum length of translated text to trigger re-translation")
+    args = parser.parse_args()
+
+    translate_markdown(read_file_path=args.read_file_path,
+                       write_file_path=args.write_file_path,
+                       re_translate_threshold=args.re_translate_threshold)
 
 

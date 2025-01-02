@@ -18,10 +18,10 @@ from academic_copilot.semantic_scholar.get_paper_info import get_semantic_id_fro
 
 def convert_to_markdown_link(title):
     # 1. 제목 데이터를 소문자로 변환
-    # 2. 공백을 하이픈으로 변환
+    # 2. 공백을 %20으로 변환 (Obsidian 내부 링크 형식, 하이픈은 지원 안함)
     # 3. 특수 문자를 제거 (단, 숫자와 하이픈은 유지)
     link = re.sub(r'[^\w\s-]', '', title)  # 특수문자 제거
-    link = link.lower().replace(' ', '-')  # 소문자로 변환 및 공백 -> 하이픈
+    link = link.lower().replace(' ', '%20')  # 소문자로 변환 및 공백 -> 하이픈
     return f"#{link}"
 
 def parsePaper(input, ieee_paper_info):
@@ -123,7 +123,7 @@ def parseSection(input, ieee_paper_info):
                     alt_text = alt_text.replace("\n", "")
 
                     img_file_name = f"ieee_{ieee_paper_info['ieee_paper_id']}_{data_fig_id}.gif"
-                    img_file_path = f"{ieee_paper_info['final_img_dir']}/{img_file_name}"
+                    img_file_path = f"{ieee_paper_info['relative_img_dir']}/{img_file_name}"
 
                     # 마크다운 형식으로 변환
                     markdown_output = f"![{alt_text}]({img_file_path})\n\n**{caption_title}** {caption_text}"
@@ -194,13 +194,13 @@ def parseParagraph(paragraph, ieee_paper_info):
                         elif paragrph_element.attrs['ref-type'] == "fig":
                             anchor = paragrph_element.attrs['anchor']
                             img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
-                            img_path = f"{ieee_paper_info['final_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
+                            img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
                             paragraph_contetns_list.append(f"[{paragrph_element.text}]({img_path})")
 
                         elif paragrph_element.attrs['ref-type'] == "table":
                             anchor = paragrph_element.attrs['anchor']
                             img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
-                            img_path = f"{ieee_paper_info['final_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
+                            img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
                             paragraph_contetns_list.append(f"[{paragrph_element.text}]({img_path})")
 
                         elif paragrph_element.attrs['ref-type'] == "sec":
@@ -249,11 +249,10 @@ def download_images(driver, ieee_paper_info):
     셀레니움과 쿠키를 사용하여 이미지 다운로드 함수
 
     Args:
-        img_dir (str): 이미지 다운로드 디렉토리 경로
         driver (webdriver): Selenium WebDriver 인스턴스
     """
     # 디렉토리 생성
-    os.makedirs(ieee_paper_info['output_img_dir'], exist_ok=True)
+    os.makedirs(ieee_paper_info['final_img_dir'], exist_ok=True)
 
     data = ieee_paper_info["img_info"]
 
@@ -271,7 +270,7 @@ def download_images(driver, ieee_paper_info):
         file_name = item.get('img_file_name')
 
         if image_url and file_name:
-            file_path = os.path.join(ieee_paper_info['output_img_dir'], file_name)
+            file_path = os.path.join(ieee_paper_info['final_img_dir'], file_name)
             try:
                 response = session.get(image_url, stream=True)
                 if response.status_code == 200:
@@ -370,6 +369,7 @@ def get_ieee_paper(ieee_paper_id = 7738524,
     output_md_path  = f"{output_dir}/{semantic_id}_original.md"
     paper_info_path = f"{paper_info_dir}/{semantic_id}_original.json"
     final_img_dir = f"{output_img_dir}/{semantic_id}_img"
+    relative_img_dir = f"../img/{semantic_id}_img"
 
     ieee_paper_info = {
         "ieee_paper_id": ieee_paper_id,
@@ -382,6 +382,7 @@ def get_ieee_paper(ieee_paper_id = 7738524,
         # img-dir
         "output_img_dir": output_img_dir,
         "final_img_dir":  final_img_dir,
+        "relative_img_dir": relative_img_dir,
 
         # paper-info-dir
         "paper_info_dir": paper_info_dir,
@@ -420,7 +421,6 @@ if __name__ == "__main__":
     parser.add_argument('--ieee_paper_id', type=int, default=9586216, help='IEEE Paper ID')
     parser.add_argument('--output_md_path', type=str, default='test/gemmini.md', help='Output Markdown File Path')
     parser.add_argument('--output_img_dir', type=str, default='test/img', help='Output Image Directory Path')
-    parser.add_argument('--final_img_dir', type=str, default='img', help='Relative Image Directory Path')
     parser.add_argument('--paper_info_path', type=str, default='test/paper_info.json', help='Paper Info JSON File Path')
     args = parser.parse_args()
 

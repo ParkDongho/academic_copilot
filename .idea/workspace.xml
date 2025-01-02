@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b092b3da-0b63-4278-bd7c-fd0422e39846" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/util/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/util/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/gpt_integration/translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/gpt_integration/translate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/env.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +117,9 @@
       <workItem from="1735626204028" duration="8773000" />
       <workItem from="1735636970938" duration="2688000" />
       <workItem from="1735790411181" duration="4082000" />
-      <workItem from="1735800167716" duration="4705000" />
+      <workItem from="1735800167716" duration="4833000" />
+      <workItem from="1735805869117" duration="1045000" />
+      <workItem from="1735806937565" duration="2824000" />
     </task>
     <servers />
   </component>

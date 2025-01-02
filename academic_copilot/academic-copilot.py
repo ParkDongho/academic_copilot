@@ -49,6 +49,11 @@ def main():
                                        help="Source to download the paper from")
     download_paper_parser.add_argument("--id", type=str, help="Journal ID (if applicable)")
 
+    # Subcommand: translate
+    translate_parser = subparsers.add_parser("translate", help="Translate text")
+    translate_parser.add_argument("--from", default="english", type=str,)
+    translate_parser.add_argument("--to", default="korean", type=str, required=True,)
+
     args = parser.parse_args()
 
     if args.command == "get_paper":
@@ -73,6 +78,10 @@ def main():
                 download_paper_from_ieeexplore(args.id)
             else:
                 download_paper_from_ieeexplore(None)
+
+    elif args.command == "translate":
+        if args.source == "to":
+
 
 
 if __name__ == "__main__":

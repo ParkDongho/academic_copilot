@@ -61,7 +61,7 @@ python3 academic-copilot.py download_paper ---from=ieeexplore
 ```
 
 ```bash
-python3 academic-copilot.py download_paper ---from=ieeexplore --id=123456789
+python3 academic-copilot.py download_paper ---from=ieeexplore --id=7738524
 ```
 
 ### 2.2 From the ACM Digital Library
@@ -87,8 +87,8 @@ python3 academic-copilot.py download_paper ---from=ieeexplore --id=123456789
 
 ### 3.1 Translate Paper Text
 
-```python
-
+```bash
+python3 academic-copilot.py translate --from=ko --to=en --path=./paper_text.md
 ```
 
 ### 3.2 Generate Summary
