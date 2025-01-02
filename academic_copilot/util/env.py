@@ -3,6 +3,7 @@ import os
 S2_API_KEY         = os.environ.get('S2_API_KEY', None)
 
 PAPER_INFO_PATH    = os.environ.get('PAPER_INFO_PATH', None)
+PAPER_IMG_PATH   = os.environ.get('PAPER_IMG_PATH', None)
 JOURNAL_LIST_PATH  = os.environ.get('JOURNAL_LIST_PATH', None)
 CITATION_INFO_PATH = os.environ.get('CITATION_INFO_PATH', None)
 REFERENCE_INFO_PATH = os.environ.get('REFERENCE_INFO_PATH', None)

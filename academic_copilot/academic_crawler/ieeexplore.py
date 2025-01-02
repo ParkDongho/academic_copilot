@@ -123,7 +123,7 @@ def parseSection(input, ieee_paper_info):
                     alt_text = alt_text.replace("\n", "")
 
                     img_file_name = f"ieee_{ieee_paper_info['ieee_paper_id']}_{data_fig_id}.gif"
-                    img_file_path = f"{ieee_paper_info['relative_img_dir']}/{img_file_name}"
+                    img_file_path = f"{ieee_paper_info['final_img_dir']}/{img_file_name}"
 
                     # 마크다운 형식으로 변환
                     markdown_output = f"![{alt_text}]({img_file_path})\n\n**{caption_title}** {caption_text}"
@@ -194,13 +194,13 @@ def parseParagraph(paragraph, ieee_paper_info):
                         elif paragrph_element.attrs['ref-type'] == "fig":
                             anchor = paragrph_element.attrs['anchor']
                             img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
-                            img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
+                            img_path = f"{ieee_paper_info['final_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
                             paragraph_contetns_list.append(f"[{paragrph_element.text}]({img_path})")
 
                         elif paragrph_element.attrs['ref-type'] == "table":
                             anchor = paragrph_element.attrs['anchor']
                             img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
-                            img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
+                            img_path = f"{ieee_paper_info['final_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
                             paragraph_contetns_list.append(f"[{paragrph_element.text}]({img_path})")
 
                         elif paragrph_element.attrs['ref-type'] == "sec":
@@ -356,18 +356,37 @@ def extract_references(driver, ieee_paper_info):
     return ieee_paper_info
 
 def get_ieee_paper(ieee_paper_id = 7738524,
-         output_md_path = 'test/eyeriss.md',
-         output_img_dir = "test/img",
-         relative_img_dir = "img",
-         paper_info_path = "test/paper_info.json"):
+                   output_dir     = ORIGINAL_PAPER_PATH,
+                   output_img_dir = PAPER_IMG_PATH,
+                   paper_info_dir = ORIGINAL_PAPER_INFO_PATH):
 
     driver = webdriver.Chrome()
+
+    semantic_id = get_semantic_id_from_ieee_id(ieee_paper_id, driver)
+    if not semantic_id:
+        print(f"Semantic Scholar ID for IEEE {ieee_paper_id}: not found.")
+        return
+
+    output_md_path  = f"{output_dir}/{semantic_id}_original.md"
+    paper_info_path = f"{paper_info_dir}/{semantic_id}_original.json"
+    final_img_dir = f"{output_img_dir}/{semantic_id}_img"
+
     ieee_paper_info = {
-        "output_md_path": output_md_path,
-        "output_img_dir": output_img_dir,
-        "relative_img_dir": relative_img_dir,
-        "paper_info_path": paper_info_path,
         "ieee_paper_id": ieee_paper_id,
+        "semantic_id": semantic_id,
+
+        # output-dir
+        "output_dir": output_dir,
+        "output_md_path": output_md_path,
+
+        # img-dir
+        "output_img_dir": output_img_dir,
+        "final_img_dir":  final_img_dir,
+
+        # paper-info-dir
+        "paper_info_dir": paper_info_dir,
+        "paper_info_path": paper_info_path,
+
         "reference_info": [],
         "img_info": [],
         "section_info": [],
@@ -401,9 +420,9 @@ if __name__ == "__main__":
     parser.add_argument('--ieee_paper_id', type=int, default=9586216, help='IEEE Paper ID')
     parser.add_argument('--output_md_path', type=str, default='test/gemmini.md', help='Output Markdown File Path')
     parser.add_argument('--output_img_dir', type=str, default='test/img', help='Output Image Directory Path')
-    parser.add_argument('--relative_img_dir', type=str, default='img', help='Relative Image Directory Path')
+    parser.add_argument('--final_img_dir', type=str, default='img', help='Relative Image Directory Path')
     parser.add_argument('--paper_info_path', type=str, default='test/paper_info.json', help='Paper Info JSON File Path')
     args = parser.parse_args()
 
-    get_ieee_paper(args.ieee_paper_id, args.output_md_path, args.output_img_dir, args.relative_img_dir, args.paper_info_path)
+    get_ieee_paper(args.ieee_paper_id, args.output_md_path, args.output_img_dir, args.final_img_dir, args.paper_info_path)
 
