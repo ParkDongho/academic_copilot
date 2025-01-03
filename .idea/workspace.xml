@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/academic_copilot/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic-copilot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/academic_copilot/gpt_integration/translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/gpt_integration/translate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/env.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +49,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.copilot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.translate.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -68,7 +67,7 @@
       <recent name="$PROJECT_DIR$/tests/academic_crawler" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.translate">
     <configuration name="academic-copilot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="academic_copilot" />
       <option name="ENV_FILES" value="" />
@@ -92,8 +91,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="translate" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="academic_copilot" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/academic_copilot/gpt_integration" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/academic_copilot/gpt_integration/translate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.translate" />
         <item itemvalue="Python.academic-copilot" />
       </list>
     </recent_temporary>
@@ -119,7 +142,8 @@
       <workItem from="1735790411181" duration="4082000" />
       <workItem from="1735800167716" duration="4833000" />
       <workItem from="1735805869117" duration="1045000" />
-      <workItem from="1735806937565" duration="2824000" />
+      <workItem from="1735806937565" duration="5100000" />
+      <workItem from="1735875030364" duration="190000" />
     </task>
     <servers />
   </component>
@@ -223,6 +247,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/academic_copilot$translate.coverage" NAME="translate 커버리지 결과" MODIFIED="1735811955641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/academic_copilot/gpt_integration" />
     <SUITE FILE_PATH="coverage/academic_copilot$copilot.coverage" NAME="copilot 커버리지 결과" MODIFIED="1735637793711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/academic_copilot" />
   </component>
 </project>

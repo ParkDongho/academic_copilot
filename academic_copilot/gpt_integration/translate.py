@@ -20,11 +20,14 @@ def translate(text, client):
     translated_text = response.choices[0].message.content
     return translated_text
 
+
 def read_and_split_texts(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
-        chapters = re.split(r'(# \d+|## \d+)', content)
-        chapters = [chapters[i] + chapters[i+1] for i in range(1, len(chapters), 2)]
+        # ##를 포함한 제목을 기준으로 나눔
+        chapters = re.split(r'(?=^## )', content, flags=re.MULTILINE)
+        # 결과에서 공백 제거 후 반환
+        chapters = [chapter.strip() for chapter in chapters if chapter.strip()]
     return chapters
 
 def save_text(file_path, file_content):
@@ -108,14 +111,19 @@ def translate_markdown(read_file_path, write_file_path, re_translate_threshold=1
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description="Translate and process text files.")
-    parser.add_argument("--read_file_path", required=True, help="Path to the input file")
-    parser.add_argument("--write_file_path", required=True, help="Path to the output file")
-    parser.add_argument("--re_translate_threshold", type=int, default=100, help="Minimum length of translated text to trigger re-translation")
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description="Translate and process text files.")
+    # parser.add_argument("--read_file_path", required=True, help="Path to the input file")
+    # parser.add_argument("--write_file_path", required=True, help="Path to the output file")
+    # parser.add_argument("--re_translate_threshold", type=int, default=100, help="Minimum length of translated text to trigger re-translation")
+    # args = parser.parse_args()
 
-    translate_markdown(read_file_path=args.read_file_path,
-                       write_file_path=args.write_file_path,
-                       re_translate_threshold=args.re_translate_threshold)
+    # translate_markdown(read_file_path=args.read_file_path,
+    #                    write_file_path=args.write_file_path,
+    #                    re_translate_threshold=args.re_translate_threshold)
+
+    translate_markdown(
+        read_file_path="/home/parkdongho/dev/academic-copilot-obsidian-template/20_Works/21_Research/1_paper_archive/original/ffdaa12ef011de9dbf43be46d45a3abcc8288965_original.md",
+        write_file_path="/home/parkdongho/dev/academic-copilot-obsidian-template/20_Works/21_Research/1_paper_archive/original/ffdaa12ef011de9dbf43be46d45a3abcc8288965_original_kr.md",
+    )
 
 

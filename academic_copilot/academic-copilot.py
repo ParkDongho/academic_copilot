@@ -2,6 +2,7 @@ import argparse
 import os
 
 from academic_copilot.academic_crawler import get_ieee_paper
+from academic_copilot.gpt_integration.translate import translate_markdown
 from academic_copilot.semantic_scholar.get_paper_info import save_paper_info_from_paper_list
 from academic_copilot.util.env import *
 
@@ -51,8 +52,10 @@ def main():
 
     # Subcommand: translate
     translate_parser = subparsers.add_parser("translate", help="Translate text")
-    translate_parser.add_argument("--from", default="english", type=str,)
-    translate_parser.add_argument("--to", default="korean", type=str, required=True,)
+    translate_parser.add_argument("--from_lang", default="english", type=str,)
+    translate_parser.add_argument("--to_lang", default="korean", type=str, required=True,)
+    translate_parser.add_argument("--read_file_path", required=True, help="Path to the input file")
+    translate_parser.add_argument("--write_file_path", required=True, help="Path to the output file")
 
     args = parser.parse_args()
 
@@ -80,7 +83,9 @@ def main():
                 download_paper_from_ieeexplore(None)
 
     elif args.command == "translate":
-        if args.source == "to":
+        if args.from_lang and args.to_lang:
+            print(f"Translating from {args.from_lang} to {args.to_lang}")
+            translate_markdown(args.read_file_path, args.write_file_path)
 
 
 
