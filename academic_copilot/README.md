@@ -87,9 +87,22 @@ python3 academic-copilot.py download_paper ---from=ieeexplore --id=7738524
 
 ### 3.1 Translate Paper Text
 
+**Default Setting**
+
+- read_file_directory: `$PAPER_INFO_PATH/original`
+- write_file_directory: `$PAPER_INFO_PATH/translated`
+- from_lang: `en`
+- to_lang: `ko`
+
 ```bash
-python3 academic-copilot.py translate --from_lang=ko --to_lang=en --read_file_path /home/parkdongho/dev/academic-copilot-obsidian-template/20_Works/21_Research/1_paper_archive/original/ffdaa12ef011de9dbf43be46d45a3abcc8288965_original.md --write_file_path /home/parkdongho/dev/academic-copilot-obsidian-template/20_Works/21_Research/1_paper_archive/original/ffdaa12ef011de9dbf43be46d45a3abcc8288965_original_kr.md
+python3 academic-copilot.py translate --from_lang=en --to_lang=ko --read_file_path /home/parkdongho/dev/academic-copilot-obsidian-template/20_Works/21_Research/1_paper_archive/original/ffdaa12ef011de9dbf43be46d45a3abcc8288965_original.md --write_file_path /home/parkdongho/dev/academic-copilot-obsidian-template/20_Works/21_Research/1_paper_archive/original/ffdaa12ef011de9dbf43be46d45a3abcc8288965_original_kr.md
 ```
+
+```bash
+python3 academic-copilot.py translate --all  
+```
+
+
 
 ### 3.2 Generate Summary
 
