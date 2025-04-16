@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b092b3da-0b63-4278-bd7c-fd0422e39846" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/academic_copilot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/academic_copilot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/gpt_integration/text_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/gpt_integration/text_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/env.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,14 +53,17 @@
     &quot;Python.text_generator.executor&quot;: &quot;Debug&quot;,
     &quot;Python.translate.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/parkdongho/dev/academic_copilot&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.2818287&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -150,8 +154,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
-        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.26053.29" />
+        <option value="bundled-python-sdk-b1dbf8ef85a6-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.26053.29" />
       </set>
     </attachedChunks>
   </component>
@@ -173,6 +177,20 @@
       <workItem from="1735881327877" duration="6008000" />
       <workItem from="1735889597113" duration="2095000" />
       <workItem from="1736237292249" duration="1054000" />
+      <workItem from="1736302668910" duration="2434000" />
+      <workItem from="1736570251124" duration="858000" />
+      <workItem from="1744728207362" duration="34000" />
+      <workItem from="1744728310353" duration="2000" />
+      <workItem from="1744728337674" duration="3077000" />
+      <workItem from="1744778136797" duration="218000" />
+      <workItem from="1744778361762" duration="61000" />
+      <workItem from="1744778447608" duration="579000" />
+      <workItem from="1744779628862" duration="9000" />
+      <workItem from="1744779943397" duration="1682000" />
+      <workItem from="1744782528900" duration="73000" />
+      <workItem from="1744782626492" duration="5000" />
+      <workItem from="1744782636756" duration="881000" />
+      <workItem from="1744783524689" duration="157000" />
     </task>
     <servers />
   </component>
@@ -184,32 +202,32 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>188</line>
+          <line>190</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>189</line>
+          <line>191</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>191</line>
+          <line>193</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>193</line>
+          <line>195</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>192</line>
+          <line>194</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py</url>
-          <line>187</line>
+          <line>189</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

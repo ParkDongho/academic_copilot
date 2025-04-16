@@ -159,6 +159,13 @@ def save_paper_info_from_paper_list(new_paper_list):
     :return: 반환값 없음
     """
 
+    def list_yaml_files_without_extension(directory_path):
+        return [
+            os.path.splitext(f)[0]
+            for f in os.listdir(directory_path)
+            if os.path.isfile(os.path.join(directory_path, f)) and f.endswith(('.yaml', '.yml'))
+        ]
+
     # Change working directory to output directory
 
     os.makedirs(PAPER_INFO_PATH, exist_ok=True)
@@ -166,6 +173,9 @@ def save_paper_info_from_paper_list(new_paper_list):
 
     with open(new_paper_list, 'r') as s2id_file:
         s2ids = [line.strip() for line in s2id_file.readlines()]
+
+    legacy_paper_list = list_yaml_files_without_extension(PAPER_INFO_PATH)
+    s2ids = list(set(s2ids) - set(legacy_paper_list))
 
     print(f"Fetching paper info for {len(s2ids)} papers.")
 

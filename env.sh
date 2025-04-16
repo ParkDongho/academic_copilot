@@ -22,6 +22,5 @@ export TRANSLATED_PAPER_DIR="${PAPER_ARCHIVE_PATH}/translated"
 export GRAPHICAL_ABSTRACT_DIR="${PAPER_ARCHIVE_PATH}/.graphical_abstract"
 export SUMMARY_DIR="${PAPER_ARCHIVE_PATH}/.summary"
 
-source "$HOME/.semanticscholar/setup.sh"
-source "$HOME/.openai/settings.sh"
-
+# source "$HOME/.semanticscholar/setup.sh"
+source "$HOME/.openai/setup.sh"
