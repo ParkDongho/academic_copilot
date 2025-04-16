@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b092b3da-0b63-4278-bd7c-fd0422e39846" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/academic_copilot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/academic_copilot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/semantic_scholar/get_paper_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/env.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" beforeDir="false" afterPath="$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +187,7 @@
       <workItem from="1744782528900" duration="73000" />
       <workItem from="1744782626492" duration="5000" />
       <workItem from="1744782636756" duration="881000" />
-      <workItem from="1744783524689" duration="157000" />
+      <workItem from="1744783524689" duration="9182000" />
     </task>
     <servers />
   </component>
@@ -299,6 +296,16 @@
           <url>file://$PROJECT_DIR$/academic_copilot/gpt_integration/text_generator.py</url>
           <line>64</line>
           <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py</url>
+          <line>430</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/academic_copilot/academic_crawler/ieeexplore.py</url>
+          <line>61</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

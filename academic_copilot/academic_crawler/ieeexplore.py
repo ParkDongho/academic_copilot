@@ -82,10 +82,14 @@ def parseSection(input, ieee_paper_info):
             elif paragraph.name == "p":
                 section_content += f"{parseParagraph(paragraph, ieee_paper_info)}\n\n"
 
-
             elif paragraph.name == "ol":
                 for li in paragraph.find_all('li'):
                     section_content += f"1. {parseParagraph(li.contents[0], ieee_paper_info)}\n"
+                section_content += "\n\n"
+
+            elif paragraph.name == "ul":
+                for li in paragraph.find_all('li'):
+                    section_content += f"- {parseParagraph(li.contents[0], ieee_paper_info)}\n"
                 section_content += "\n\n"
 
 
@@ -141,7 +145,8 @@ def parseSection(input, ieee_paper_info):
 
 
             else:
-                print("\n\nUnhandled Tag:", paragraph)
+                print("\n\n/home/parkdongho/dev/academic_copilot/academic_copilot/academic_crawler/ieeexplore.py:144 Unhandled Tag:")
+                print(paragraph)
 
 
         single_section = [(heading_level, section_title, section_content, section_id)] + subsec_list
@@ -218,7 +223,8 @@ def parseParagraph(paragraph, ieee_paper_info):
                         else:
                             print("Unhandled Link: ", paragrph_element.text, ", ", paragrph_element.attrs['ref-type'], ", ", paragrph_element.attrs['anchor'])
                     else:
-                        print("Unhandled Tag: ", paragrph_element.name)
+                        print("Unhandled Tag: academic_copilot/academic_crawler/ieeexplore.py:221")
+                        print(paragrph_element.name)
                         paragraph_contetns_list.append(paragrph_element.text)
 
             return "".join(paragraph_contetns_list)
