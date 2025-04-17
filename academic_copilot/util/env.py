@@ -12,4 +12,4 @@ NEW_PAPER_LIST     = os.environ.get('NEW_PAPER_LIST', None)
 ORIGINAL_PAPER_PATH = os.environ.get('ORIGINAL_PAPER_PATH', None)
 ORIGINAL_PAPER_INFO_PATH = os.environ.get('ORIGINAL_PAPER_INFO_PATH', None)
 
-
+MAX_RETRIES = os.environ.get('MAX_RETRIES', 5)

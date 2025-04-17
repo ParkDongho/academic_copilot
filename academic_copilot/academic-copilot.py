@@ -3,7 +3,8 @@ import os
 
 from academic_copilot.academic_crawler import get_ieee_paper
 from academic_copilot.gpt_integration.translate import translate_markdown
-from academic_copilot.semantic_scholar.get_paper_info import save_paper_info_from_paper_list
+from academic_copilot.semantic_scholar.get_paper_info import save_paper_info_from_paper_list, \
+    find_files_with_external_id, get_ieee_id_from_semantic_id
 from academic_copilot.util.env import *
 
 def get_paper_from_list(file_path):
@@ -24,9 +25,29 @@ def get_paper_from_semantic_id(semantic_id):
 # academic_crawler
 
 def download_paper_from_ieeexplore(ieee_id):
-    get_ieee_paper(ieee_id)
-    print(f"Downloading paper from IEEE Xplore: {ieee_id}")
-    # Logic for downloading paper from IEEE Xplore
+
+    def list_yaml_files_without_extension(directory_path):
+        return [
+            os.path.splitext(f)[0]
+            for f in os.listdir(directory_path)
+            if os.path.isfile(os.path.join(directory_path, f)) and f.endswith(('_original.md'))
+        ]
+
+
+    if ieee_id is None:
+        ieee_paper_list = find_files_with_external_id("IEEE")
+        downloaded_paper_list = list_yaml_files_without_extension(ORIGINAL_PAPER_PATH)
+        semantic_id = list(set(ieee_paper_list) - set(downloaded_paper_list))
+        print(f"Downloaded {len(semantic_id)} paper list")
+
+        new_paper_list = [get_ieee_id_from_semantic_id(f) for f in semantic_id]
+        print(len(new_paper_list))
+        print(new_paper_list)
+        return
+    else:
+        get_ieee_paper(ieee_id)
+        print(f"Downloading paper from IEEE Xplore: {ieee_id}")
+        # Logic for downloading paper from IEEE Xplore
 
 
 def main():

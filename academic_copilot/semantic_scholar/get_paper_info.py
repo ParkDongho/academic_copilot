@@ -1,11 +1,12 @@
 import requests
-from requests import Session
+from requests import Session, HTTPError
 import time
 import yaml
 import pandas as pd
 from typing import Any, Dict
 import re
 import dotenv
+import logging
 
 from selenium.webdriver.common.by import By
 from academic_copilot.semantic_scholar.academic_database import search_from_database
@@ -74,14 +75,8 @@ def clean_abstract(abstract: str) -> str:
 def get_paper_metadata(session: Session, paper_id: str,
                        fields: str = 'title,authors,year,venue,abstract,citationCount') -> Dict[str, Any]:
     """
-    Get paper metadata from Semantic Scholar API.
-
-    :param session:
-    :param paper_id:
-    :param fields:
-    :return:
+    Get paper metadata from Semantic Scholar API with retry logic on rate limiting (HTTP 429).
     """
-
     params = {
         'fields': fields,
     }
@@ -90,10 +85,21 @@ def get_paper_metadata(session: Session, paper_id: str,
     }
 
     url = f'https://api.semanticscholar.org/graph/v1/paper/{paper_id}'
-    with session.get(url, params=params, headers=headers) as response:
-        response.raise_for_status()
-        return response.json()
 
+    for attempt in range(int(MAX_RETRIES)):
+        try:
+            with session.get(url, params=params, headers=headers) as response:
+                response.raise_for_status()
+                return response.json()
+        except HTTPError as e:
+            if response.status_code == 429:
+                wait_time = int(response.headers.get("Retry-After", 5 ** attempt + 5))
+                logging.warning(f"Rate limited (429). Waiting {wait_time} seconds before retrying... (attempt {attempt + 1})")
+                time.sleep(wait_time)
+            else:
+                logging.error(f"HTTP error {response.status_code}: {e}")
+                raise
+    raise Exception("Max retries exceeded for paper metadata request.")
 
 def load_journal_list(journal_list_path):
     """
@@ -233,8 +239,7 @@ def get_redirected_url(doi):
         response.raise_for_status()
         return response.url
     except requests.exceptions.RequestException as e:
-        print(f"Error accessing DOI: {e}")
-        return None
+        return response.url
 
 
 def identify_source_and_id(url):
@@ -367,6 +372,43 @@ def get_doi_from_ieee_id(ieee_id, driver):
 
     except Exception as e:
         return f"오류 발생: {e}"
+
+def get_ieee_id_from_semantic_id(semantic_id):
+    """
+    Get the IEEE ID using Semantic Scholar ID.
+
+    :param semantic_id: Semantic Scholar ID
+    :returns: IEEE ID
+    """
+    ieee_id = search_from_database(
+        "SEMANTIC", semantic_id,
+        "IEEE")
+
+    if not ieee_id:
+        print(f"No IEEE ID found for Semantic Scholar ID {semantic_id}")
+        return None
+
+    return ieee_id
+
+def find_files_with_external_id(key="IEEE"):
+    valid_files = []
+
+    directory = PAPER_INFO_PATH
+    for filename in os.listdir(directory):
+        if filename.endswith(".yaml") or filename.endswith(".yml") or filename.endswith(".json"):
+            filepath = os.path.join(directory, filename)
+            try:
+                with open(filepath, 'r', encoding='utf-8') as file:
+                    data = yaml.safe_load(file)
+                    external_ids = data.get("external_ids", {})
+                    if key in external_ids and external_ids[key] is not None:
+                        # 확장자 제거
+                        base_name = os.path.splitext(filename)[0]
+                        valid_files.append(base_name)
+            except Exception as e:
+                print(f"Error reading {filename}: {e}")
+
+    return valid_files
 
 
 

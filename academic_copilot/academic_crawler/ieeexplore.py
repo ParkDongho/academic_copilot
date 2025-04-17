@@ -50,11 +50,16 @@ def parseSection(input, ieee_paper_info):
         # Tag인지 NavigableString인지 확인
         if isinstance(paragraph, NavigableString):
             if (paragraph.strip() != ""):
-                print(f"Invalid NavigableString!: {paragraph}")
+                section_content += paragraph.text
             continue
 
         # subsection 처리
         if 'section_2' in paragraph.get('class', "div"):
+            subsec_tmp, fig_table_data_tmp = parseSection(paragraph, ieee_paper_info)
+            subsec_list = subsec_list + subsec_tmp
+            fig_table_data = fig_table_data + fig_table_data_tmp
+
+        elif 'section' in paragraph.get('class', "div"):
             subsec_tmp, fig_table_data_tmp = parseSection(paragraph, ieee_paper_info)
             subsec_list = subsec_list + subsec_tmp
             fig_table_data = fig_table_data + fig_table_data_tmp
@@ -92,7 +97,8 @@ def parseSection(input, ieee_paper_info):
                     section_content += f"- {parseParagraph(li.contents[0], ieee_paper_info)}\n"
                 section_content += "\n\n"
 
-
+            elif paragraph.name == "inline-formula" or paragraph.name == "i":
+                section_content += parseElement(paragraph, ieee_paper_info)
 
             # Figure 생성
             elif any(cls in paragraph.get('class', []) for cls in ["figure", "figure-full", "table"]):
@@ -145,7 +151,7 @@ def parseSection(input, ieee_paper_info):
 
 
             else:
-                print("\n\n/home/parkdongho/dev/academic_copilot/academic_copilot/academic_crawler/ieeexplore.py:144 Unhandled Tag:")
+                print("\n\n/home/parkdongho/dev/academic_copilot/academic_copilot/academic_crawler/ieeexplore.py:148 Unhandled Tag:")
                 print(paragraph)
 
 
@@ -160,74 +166,102 @@ def parseParagraph(paragraph, ieee_paper_info):
         if isinstance(paragraph, NavigableString):
             return paragraph.text
         else:
-            for paragrph_element in paragraph.contents:
-                if isinstance(paragrph_element, NavigableString):
-                    paragraph_contetns_list.append(paragrph_element.text)
-
-                elif isinstance(paragrph_element, Tag):
-                    # inline formula
-                    if paragrph_element.name == "inline-formula":
-                        latex_code = paragrph_element.find('script', {'type': 'math/tex'}).text
-                        latex_code = latex_code.replace("\n", "")
-                        paragraph_contetns_list.append(f"${latex_code}$")
-
-                    # disp-formula
-                    elif paragrph_element.name == "disp-formula":
-                        span_tag = paragrph_element.find('span', class_="tex tex2jax_ignore")
-                        if span_tag and span_tag.text:
-                            latex_code = span_tag.text
-                            latex_code = latex_code.replace("\n", "")
-                            paragraph_contetns_list.append(f"\n\n$$\n{latex_code}\n$$\n\n")
-
-                    # bold, italic 처리
-                    elif paragrph_element.name == "i":
-                        paragraph_contetns_list.append(f"*{paragrph_element.text}*")
-                    elif paragrph_element.name == "b":
-                        paragraph_contetns_list.append(f"**{paragrph_element.text}**")
-
-
-                    # 인용문 처리
-                    elif paragrph_element.name == "a":
-                        if paragrph_element.attrs['ref-type'] == "bibr":
-                            link_text = paragrph_element.text
-                            if paragrph_element.text[0] == "[":
-                                link_text = paragrph_element.text.replace("[", "\[")
-                            if paragrph_element.text[-1] == "]":
-                                link_text = link_text.replace("]", "\]")
-                            paragraph_contetns_list.append(f"[{link_text}]({paragrph_element.attrs['anchor']})")
-
-                        elif paragrph_element.attrs['ref-type'] == "fig":
-                            anchor = paragrph_element.attrs['anchor']
-                            img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
-                            img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
-                            paragraph_contetns_list.append(f"[{paragrph_element.text}]({img_path})")
-
-                        elif paragrph_element.attrs['ref-type'] == "table":
-                            anchor = paragrph_element.attrs['anchor']
-                            img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
-                            img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
-                            paragraph_contetns_list.append(f"[{paragrph_element.text}]({img_path})")
-
-                        elif paragrph_element.attrs['ref-type'] == "sec":
-                            anchor = paragrph_element.attrs['anchor']
-                            section_link_title = str(next((item[1] for item in ieee_paper_info["section_info"] if item[3] == anchor), None))
-                            section_path = f"{convert_to_markdown_link(section_link_title)}" if section_link_title else "none"
-                            paragraph_contetns_list.append(f"[{paragrph_element.text}]({section_path})")
-
-                        elif paragrph_element.attrs['ref-type'] == "fn":
-                            paragraph_contetns_list.append(f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})")
-
-                        elif paragrph_element.attrs['ref-type'] == "disp-formula":
-                            paragraph_contetns_list.append(f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})")
-
-                        else:
-                            print("Unhandled Link: ", paragrph_element.text, ", ", paragrph_element.attrs['ref-type'], ", ", paragrph_element.attrs['anchor'])
-                    else:
-                        print("Unhandled Tag: academic_copilot/academic_crawler/ieeexplore.py:221")
-                        print(paragrph_element.name)
-                        paragraph_contetns_list.append(paragrph_element.text)
-
+            for paragraph_element in paragraph.contents:
+                paragraph_contetns_list.append(parseElement(paragraph_element, ieee_paper_info))
             return "".join(paragraph_contetns_list)
+
+
+def parseElement(paragrph_element, ieee_paper_info):
+    if isinstance(paragrph_element, NavigableString):
+        return paragrph_element.text
+
+    elif isinstance(paragrph_element, Tag):
+        # inline formula
+        if paragrph_element.name == "inline-formula":
+            latex_code = paragrph_element.find('script', {'type': 'math/tex'}).text
+            latex_code = latex_code.replace("\n", "")
+            return f"${latex_code}$"
+
+        # disp-formula
+        elif paragrph_element.name == "disp-formula":
+            span_tag = paragrph_element.find('span', class_="tex tex2jax_ignore")
+            if span_tag and span_tag.text:
+                latex_code = span_tag.text
+                latex_code = latex_code.replace("\n", "")
+                return f"\n\n$$\n{latex_code}\n$$\n\n"
+
+
+        # 인용문 처리
+        elif paragrph_element.name == "a":
+            if paragrph_element.attrs['ref-type'] == "bibr":
+                link_text = paragrph_element.text
+                if paragrph_element.text[0] == "[":
+                    link_text = paragrph_element.text.replace("[", "\[")
+                if paragrph_element.text[-1] == "]":
+                    link_text = link_text.replace("]", "\]")
+                return f"[{link_text}]({paragrph_element.attrs['anchor']})"
+
+            elif paragrph_element.attrs['ref-type'] == "fig":
+                anchor = paragrph_element.attrs['anchor']
+                img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
+                img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
+                return f"[{paragrph_element.text}]({img_path})"
+
+            elif paragrph_element.attrs['ref-type'] == "table":
+                anchor = paragrph_element.attrs['anchor']
+                img_name = next((img for img in ieee_paper_info["img_info"] if img["data_fig_id"] == anchor), None)
+                img_path = f"{ieee_paper_info['relative_img_dir']}/{img_name['img_file_name']}" if img_name else "none"
+                return f"[{paragrph_element.text}]({img_path})"
+
+            elif paragrph_element.attrs['ref-type'] == "sec":
+                anchor = paragrph_element.attrs['anchor']
+                section_link_title = str(
+                    next((item[1] for item in ieee_paper_info["section_info"] if item[3] == anchor), None))
+                section_path = f"{convert_to_markdown_link(section_link_title)}" if section_link_title else "none"
+                return f"[{paragrph_element.text}]({section_path})"
+
+            elif paragrph_element.attrs['ref-type'] == "fn":
+                return f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})"
+
+            elif paragrph_element.attrs['ref-type'] == "disp-formula":
+                return f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})"
+
+            elif paragrph_element.attrs['ref-type'] == "algorithm":
+                return f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})"
+
+            elif paragrph_element.attrs['ref-type'] == "lemma":
+                return f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})"
+
+            elif paragrph_element.attrs['ref-type'] == "theorem":
+                return f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})"
+
+            elif paragrph_element.attrs['ref-type'] == "graphic":
+                return f"[{paragrph_element.text}]({paragrph_element.attrs['anchor']})"
+
+            else:
+                print("Unhandled Link: ", paragrph_element.text, ", ", paragrph_element.attrs['ref-type'], ", ",
+                      paragrph_element.attrs['anchor'])
+
+        # bold, italic 처리
+        elif paragrph_element.name == "i":
+            return (f"*{paragrph_element.text}*")
+        elif paragrph_element.name == "b":
+            return (f"**{paragrph_element.text}**")
+
+        elif paragrph_element.name == "sub":
+            return (f"<sub>{paragrph_element.text}</sub>")
+
+        elif paragrph_element.name == "sup":
+            return (f"<sup>{paragrph_element.text}</sup>")
+
+        elif paragrph_element.name == "monospace":
+            return (f"`{paragrph_element.text}`")
+
+        else:
+            print(
+                "\n\n/home/parkdongho/dev/academic_copilot/academic_copilot/academic_crawler/ieeexplore.py:322 Unhandled Tag:")
+            print(paragrph_element.name)
+            return (paragrph_element.text)
 
 
 # Function to extract content and convert to Markdown
